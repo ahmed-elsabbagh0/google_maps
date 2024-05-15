@@ -19,6 +19,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       zoom: 10,
     );
     mapType = MapType.normal;
+    initMarkers();
     super.initState();
   }
 
@@ -29,12 +30,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   }
 
   late GoogleMapController googleMapController;
+  Set<Marker> markers = {};
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         GoogleMap(
+          markers: markers,
           mapType: mapType,
           onMapCreated: (controller) {
             googleMapController = controller;
@@ -89,9 +92,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                 ),
                 onPressed: () {
                   mapType = MapType.satellite;
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 child: const Icon(
                   Icons.satellite_alt,
@@ -114,9 +115,7 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                 ),
                 onPressed: () {
                   mapType = MapType.normal;
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
                 child: const Icon(
                   Icons.u_turn_left_rounded,
@@ -135,5 +134,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         .loadString('assets/map_styles/map_style_night.json');
 
     googleMapController.setMapStyle(nightMapStyle);
+  }
+
+  void initMarkers() {
+    var myMarker = const Marker(
+        markerId: MarkerId('1'),
+        position: LatLng(31.18708, 29.92811),
+      );
+   
+    markers.add(myMarker);
   }
 }
