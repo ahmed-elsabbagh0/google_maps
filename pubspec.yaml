@@ -63,6 +63,7 @@ flutter:
 
   assets:
     - assets/map_styles/map_style_night.json
+    - assets/images/pin.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
